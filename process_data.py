@@ -22,6 +22,16 @@ class ProcessData:
             expiration_date = datetime.strptime(item['dataDeExpirare'], '%d/%m/%Y').date()
             if expiration_date > today:
                 valid_licenses.append(item)
-        print(valid_licenses)
 
         ExportData(valid_licenses, 'valid').export()
+
+    def find_licenses_by_category_and_count(self):
+        licenses_by_category = {}
+        for item in self.data:
+            category = item['categorie']
+            if category in licenses_by_category:
+                licenses_by_category[category] += 1
+            else:
+                licenses_by_category[category] = 1
+
+        ExportData(licenses_by_category, 'by_category').export()

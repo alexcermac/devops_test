@@ -1,0 +1,64 @@
+Answers to questions:
+
+1. I would use the array data structure to store a collection of data of the same type. The second data structure that I will talk about is the stack that in a real life situation can be used on a mobile application to store the visited pages. The app will store every new page on top of the stack, and if the user goes back to previous page, the app will "pop" the current page from the top of the stack.
+
+2. The IP address behind this website is 104.26.1.62:443. The browser knows the correct IP because when we access a domain name, our web browser sends a request to a DNS server that translates the domain name into its corresponding IP address.
+
+3. UDP and TCP are two transport protocols.
+UDP protocol can be used in gaming, because here speed and size of data is more important than security.
+TCP protocol it is more secured so it can be used in many places like bank transactions and web browsing.
+
+4. The method I would prefer would be using AWS as follows:
+
+Preparation
+1. Use docker to create the docker images
+2. Upload these images to docker hub
+
+Deployment
+1. I would use an EC2 instance where I would install docker and docker-compose
+2. Create the docker-compose.yml and write the right configuration
+3. Buy a domain name from a preferred company
+4. Generate SSL certificates for www.example.com and example.com
+5. Use AWS Route 53 to route the traffic from our bought domain name to our EC2 instance public IP address
+6. Run the docker-compose file and hope it won't blow up the cost at the end of each month
+
+To all this, it would be a good idea to add a CI/CD pipeline that at the end of the pipeline will trigger a restart of docker compose running containers to use the latest image from docker hub(maybe even individually if only for a specific service was made an update, not for all configured in docker-compose.yml).
+
+
+5.
+1. One way to achieve this would be to restrict the access to my EC2 instance and allow only some IPs to access it. (I think that can be done with Security Groups and VPC offered by AWS)
+2. Considering the fact from the previous question that the application is written in my favourite language, let's say that I use Java Spring Boot for it. Another way to achieve this is to make a use of Spring Security and create a new filter in the filter chain where I specify the IPs that are allowed.
+
+6. I would take these two in consideration:
+- use AWS IAM to set permissions and restrict access as much as possible, and be as specific as it can when giving permissions to a user in AWS console
+- encrypt user's messages before storing into the data base
+
+7. Cookies are some data that a website saves to your browser. Cookies can help to make a better experience for the user that visits the website, and can help businesses in many ways, for example to track user's prefferences, shopping carts, etc.
+
+Name: ar_debug
+Value: 1
+I think this cookie has something to do with monitoring some debugging events.
+
+8. In Java you can create new child processes with the help of the ProcessBuilder class and the possible states of a process are ready, running, waiting, new, terminate.
+
+9. To find the PID I would cd in command line to JDK's bin folder and run "jps" command. To debug it, we can use the IDE Debug mode or use jdb with command line.
+
+10. I would use PostgreSQL because it has more features and capabilities than other dbms (even MySQL would be a good choice too, if we think about SQL dbms). But, I would really take in consideration DynamoDB offered by AWS because if it's a good fit for the project, it would scale better than any of sql dbms.
+To store the passwords, first of all I would encrypt the password and only after that I would store it in data base.
+
+
+
+
+------------------------------------------------------------------
+The steps I took:
+
+- first of all I configured the docker-compose.yml file to start and get data from the yondermakers/yonder-devops-tech-assessment:latest image
+- a little bit of research about Python and it's syntax, because I used it in the past just a little bit to write some short AWS Lambda functions
+- created an interactive menu using a while loop
+- created separate classes that have specific jobs like: call API, process data, export data in Excel format
+- for the first requirement (List suspended licenses) I've created a function in ProcessData class that filters only the objects that have the value of "suspendat" attribute equal to true
+- after filtering the data, the export function from ExportData class is called
+- in the export function I used "pandas" library to transform the resulting data in a Data Frame and to be able to export as a xls file
+- for the second requirement I've converted the value of "dataDeExpirare" to a date, to be able to compare it with current date
+- for the third requirement I've iterated through fetched data array, created a dict that has as keys the name of the categories and as values takes the counter for every category that is found
+- it was needed to add an if in the export function because for the third requirement I used a dict, not an array, so the conversion to a DataFrame had a little difference

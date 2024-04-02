@@ -22,7 +22,7 @@ def main():
         elif choice == "2":
             process_data.extract_valid_licenses()
         elif choice == "3":
-            print("3. Call Function 3")
+            process_data.find_licenses_by_category_and_count()
         elif choice == "4":
             break
         else:
