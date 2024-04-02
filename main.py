@@ -2,7 +2,7 @@ from api_client import APIClient
 from process_data import ProcessData
 
 def main():
-    api_client = APIClient('http://localhost:30000/drivers-licenses/list', 10)
+    api_client = APIClient('http://localhost:30000/drivers-licenses/list', 150)
     results = api_client.fetch()
     print(results)
 
